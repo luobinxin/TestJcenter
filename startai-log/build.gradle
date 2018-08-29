@@ -1,0 +1,57 @@
+apply plugin: 'com.android.library'
+
+
+
+android {
+    compileSdkVersion 27
+
+
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 27
+        versionCode 102
+        versionName "1.0.2"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+
+}
+
+//添加
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    //bintray.com用户名
+    userOrg = 'robin1015'
+    //jcenter上的路径
+    groupId = 'cn.com.startai.startai_log'
+    //项目名称
+    artifactId = 'startai-log'
+    //版本号
+    publishVersion = '1.0.2'
+    //描述，不重要
+    desc = '测试startailog库'
+    //网站，不重要
+    website = 'https://www.startai.com.cn'
+
+}
+//gradlew clean build bintrayUpload -PbintrayUser=robin1015  -PbintrayKey=b1ecd692fdd40a39ca847e60a805261421fc481c -PdryRun=false
